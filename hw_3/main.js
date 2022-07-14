@@ -19,6 +19,7 @@ function exponentiation (n, exp) {
   for (let i = 1; i < exp; i++) {
     result *= n;
   }
+
   return result;
 }
 
@@ -36,6 +37,7 @@ function countLetter (str, matchLetter) {
       countLetter++;
     }
   }
+
   return countLetter;
 }
 
@@ -47,6 +49,7 @@ function removeLetter (str, removeLetter) {
       resultStr += str[i];
     }
   }
+  
   return resultStr;
 }
 

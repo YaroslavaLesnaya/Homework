@@ -17,14 +17,22 @@ if (number1 > number2) {
 const skipEven = confirm('пропускать парные числа?');
 let sumNumbers = 0;
 
-if (!skipEven) {
-  for(let i = number1; i <= number2; i++) {
-    sumNumbers += i;  
+// if (!skipEven) {
+//   for(let i = number1; i <= number2; i++) {
+//     sumNumbers += i;  
+//   }
+//   console.log('сумма чисел:', sumNumbers);
+// } else {
+//     for(let j = number1; j <= number2; j += 1) {
+//       sumNumbers += j;
+//     }
+//     console.log('сумма чисел без парных:', sumNumbers);
+//   }
+
+for (let i = number1; i <= number2; i++) {
+  if (!skipEven) sumNumbers += i;
+  else {
+    if (i % 2 !== 0) sumNumbers += i;
   }
-  console.log('сумма чисел:', sumNumbers);
-} else {
-    for(let j = number1; j <= number2; j += 2) {
-      sumNumbers += j;
-    }
-    console.log('сумма чисел без парных:', sumNumbers);
-  }
+}
+console.log('сумма чисел:', sumNumbers);
