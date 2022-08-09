@@ -1,84 +1,70 @@
 // Створіть функцію filterEvenNumbers(...numbers) – яка фільтрує парні числа передані як аргументи функції.
 // Приклад: filterEvenNumbers(1, 2, 3, 4, 5, 6) -> [1, 3, 5]
-const filterEvenNumbers = (numbers) => {
-  const filterNumbers = numbers.filter(function(num) {
-    if (num % 2 !== 0) {
-      return num;
-    }
-  });
-
-  return filterNumbers;
-}
-
-console.log(filterEvenNumbers([1, 2, 3, 4, 5, 8, 9]));
+const getFilterEvenNumbers = numbers => numbers.filter(num => num % 2);
+const filterEvenNumbers = getFilterEvenNumbers([1, 2, 3, 4, 5, 8, 9]);
+console.log('Filtered even numbers:', filterEvenNumbers);
 
 
 // Створіть функцію countPositiveNumbers(...numbers) – яка порахує кількість чисел більших 0
 // Приклад: countPositiveNumbers(1, -2, 3, -4, -5, 6) -> 3
-const PositiveNumbers = (numbers) => {
-  let count = 0;
-  numbers.filter(function(num) {
-    if (num > 0) {
-      count++;
-    }
-  })
-
-  return count;
+const getCountPositiveNumbers = numbers => {
+  const getCountPositiveNumbers = numbers.filter(num => num > 0);
+  return getCountPositiveNumbers.length;
 }
 
-console.log(PositiveNumbers([1, 2, -5, 4, -9, -8, 6]));
+const countPositiveNumbers = getCountPositiveNumbers([1, 2, -5, 4, -9, -8, 6]);
+console.log('Count positive numbers:', countPositiveNumbers);
+
 
 // Створіть функцію getRandomArray(length, min, max) – яка повертає масив випадкових цілих чисел.
 // У функції є параметри: length - довжина масиву, min – мінімальне значення цілого числа,
 // max – максимальне значення цілого числа. Приклад: getRandomArray(15, 1, 100) –>
 // [6, 2, 55, 11, 78, 2, 55, 77, 57, 87, 23, 2, 56, 3, 2]
 const getRandomArray = (length, min, max) => {
-  const randomArray = [];
+  const randomNumbers = [];
   for (let i = min; i < length + 1; i++) {
-    const randomElements = Math.round(Math.random() * (max - min + 1));
-    randomArray.push(randomElements);
+    const randomNumber = Math.round(Math.random() * (max - min + 1));
+    randomNumbers.push(randomNumber);
   }
 
-  return randomArray;
+  return randomNumbers;
 }
 
- console.log(getRandomArray(15, 1, 100));
+const randomArray = getRandomArray(15, 1, 100);
+console.log('Random array:', randomArray);
+
 
 //  Створіть функцію getDividedByFive(...numbers) – яка відфільтрує усі елементи в масиві та залишить тільки ті,
 //  які діляться на ціло на 5. Приклад: getDividedByFive(6, 2, 55, 11, 78, 2, 55, 77, 57, 87, 23, 2, 56, 3, 2)
 //  -> [55, 55]
-const getDividedByFive = (numbers) => {
-  const DividedByFive = numbers.filter(function(num) {
-    if (num % 5 == 0) {
-      return num;
-    }
-  });
+const getDividedByFive = numbers => numbers.filter(num => num % 5 === 0)
+const dividedByFive = getDividedByFive([1, 5, 9, 10, 15, 3, 6, 7, 25]);
+console.log('Numbers divided by 5:', dividedByFive);
 
-  return DividedByFive;
-}
-
-console.log(getDividedByFive([1, 5, 9, 10, 15, 3, 6, 7, 25]));
 
 // Створіть функцію getAverage(...numbers) – яка рахує середнє арифметичне всіх переданих в неї аргументів.
 // НЕЦІЛІ ЧИСЛА ІГНОРУЮТЬСЯ. Приклад: getAverage(6, 2, 55, 11, 78, 2, 55, 77, 57, 87, 23, 2, 56, 3, 2) –> 34.4
-const getAverage = (numbers) => {
+const getAverageNumbers = numbers => {
   let countNotInt = 0;
   for (let i = 0; i < numbers.length; i++) {
     if (numbers[i] % 1 !== 0) countNotInt++;
   }
 
-  return numbers
+  const averageNumbers = numbers
     .filter(num => num % 1 == 0)
-    .reduce((accum, number) => accum + number, 0) / (numbers.length - countNotInt);   
+    .reduce((accum, number) => accum + number, 0) / (numbers.length - countNotInt);
+  
+  return averageNumbers;
 }
 
-console.log(getAverage([1, 2, 3, 2.5, 6, 2.1]));
+const averageNumbers = getAverageNumbers([1, 2, 3, 2.5, 6, 2.1])
+console.log('Average of numbers:', averageNumbers);
 
 
 // Створіть функцію divideByThree(word), яка розбиває кожне слово на умовні склади по 3 букви.
 // Якщо букв менше трьох – не розбиває. Пробіли завжди видаляються. Рядок приводится до нижнього регістру.
 // Приклад: divideByThree("Commander) -> ["com", "man", "der"] Приклад: divideByThree("live") -> ["liv", "e"]
-const divideByThree = (word) => {
+const getDivideByThree = word => {
   return word
     .replaceAll(' ', '')
     .split(" ").map(function (str) {
@@ -91,10 +77,13 @@ const divideByThree = (word) => {
           arr.push(str);
         };
       });
+
       return arr.join("");
     };
+
     return str;
   });
 }
 
-console.log(divideByThree('ertgfku cbhg clsdd'));
+const dividedByThree = getDivideByThree('ertgfku cbhg clsdd');
+console.log('Words divided by 3 letters:', dividedByThree);
