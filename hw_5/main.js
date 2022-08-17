@@ -1,15 +1,16 @@
 // Створіть функцію filterEvenNumbers(...numbers) – яка фільтрує парні числа передані як аргументи функції.
 // Приклад: filterEvenNumbers(1, 2, 3, 4, 5, 6) -> [1, 3, 5]
-const getFilterEvenNumbers = numbers => numbers.filter(num => num % 2);
-const filterEvenNumbers = getFilterEvenNumbers([1, 2, 3, 4, 5, 8, 9]);
-console.log('Filtered even numbers:', filterEvenNumbers);
+const filterEvenNumbers = numbers => numbers.filter(num => num % 2);
+const evenNumbers = filterEvenNumbers([1, 2, 3, 4, 5, 8, 9]);
+console.log('Filtered even numbers:', evenNumbers);
 
 
 // Створіть функцію countPositiveNumbers(...numbers) – яка порахує кількість чисел більших 0
 // Приклад: countPositiveNumbers(1, -2, 3, -4, -5, 6) -> 3
 const getCountPositiveNumbers = numbers => {
-  const getCountPositiveNumbers = numbers.filter(num => num > 0);
-  return getCountPositiveNumbers.length;
+  const positiveNumbers = numbers.filter(num => num > 0);
+
+  return positiveNumbers.length;
 }
 
 const countPositiveNumbers = getCountPositiveNumbers([1, 2, -5, 4, -9, -8, 6]);
@@ -22,6 +23,7 @@ console.log('Count positive numbers:', countPositiveNumbers);
 // [6, 2, 55, 11, 78, 2, 55, 77, 57, 87, 23, 2, 56, 3, 2]
 const getRandomArray = (length, min, max) => {
   const randomNumbers = [];
+
   for (let i = min; i < length + 1; i++) {
     const randomNumber = Math.round(Math.random() * (max - min + 1));
     randomNumbers.push(randomNumber);
@@ -45,19 +47,13 @@ console.log('Numbers divided by 5:', dividedByFive);
 // Створіть функцію getAverage(...numbers) – яка рахує середнє арифметичне всіх переданих в неї аргументів.
 // НЕЦІЛІ ЧИСЛА ІГНОРУЮТЬСЯ. Приклад: getAverage(6, 2, 55, 11, 78, 2, 55, 77, 57, 87, 23, 2, 56, 3, 2) –> 34.4
 const getAverageNumbers = numbers => {
-  let countNotInt = 0;
-  for (let i = 0; i < numbers.length; i++) {
-    if (numbers[i] % 1 !== 0) countNotInt++;
-  }
-
-  const averageNumbers = numbers
-    .filter(num => num % 1 == 0)
-    .reduce((accum, number) => accum + number, 0) / (numbers.length - countNotInt);
+  const positiveNumbers = numbers.filter(num => num % 1 === 0);
+  const averageNumbers = positiveNumbers.reduce((accum, number) => accum + number, 0) / positiveNumbers.length;
   
   return averageNumbers;
 }
 
-const averageNumbers = getAverageNumbers([1, 2, 3, 2.5, 6, 2.1])
+const averageNumbers = getAverageNumbers([1, 2, 3, 2.5, 6, 2.1, 8])
 console.log('Average of numbers:', averageNumbers);
 
 
@@ -65,24 +61,23 @@ console.log('Average of numbers:', averageNumbers);
 // Якщо букв менше трьох – не розбиває. Пробіли завжди видаляються. Рядок приводится до нижнього регістру.
 // Приклад: divideByThree("Commander) -> ["com", "man", "der"] Приклад: divideByThree("live") -> ["liv", "e"]
 const getDivideByThree = word => {
-  return word
-    .replaceAll(' ', '')
-    .split(" ").map(function (str) {
+  const toOneWord = word.replaceAll(' ', '').split(" ");
+  const dividedByThree = toOneWord.map(function (str) {
     if (str.length >= 3) {
-      const arr = [];
+      const wordByThree = [];
       str.split("").forEach(function (str, length) {
-        if ((length + 1) % 3 == 0) {
-          arr.push(str, " ");
+        if ((length + 1) % 3 === 0) {
+          wordByThree.push(str, " ");
         } else {
-          arr.push(str);
+          wordByThree.push(str);
         };
       });
 
-      return arr.join("");
-    };
-
-    return str;
+      return wordByThree.join("");
+    }
   });
+
+  return dividedByThree;
 }
 
 const dividedByThree = getDivideByThree('ertgfku cbhg clsdd');
