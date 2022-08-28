@@ -82,12 +82,7 @@ console.log('student info: ', studentInfo)
 // Ствроіть функцію getStudentsNames(students) --> ["Anton", "Tanya, "Victor"] –
 // яка повертає імена студентів у алфавітному порядку.
 function getStudentsNames () {
-  let studentsNames = [];
-
-  for(let i = 0; i < students.length; i++) {
-    studentsNames.push(students[i].name);
-  }
-  studentsNames.sort();
+  const studentsNames = students.map(stud => stud.name).sort();
 
   return studentsNames;
 }
