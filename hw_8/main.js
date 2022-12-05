@@ -11,7 +11,7 @@ class Student {
   }
 
   get marksInfo() {
-    if (this.dismis === true) {
+    if (this.isDismiss === true) {
       return null;
     } else return this.marks;
   }
@@ -21,20 +21,21 @@ class Student {
   }
 
   averageMark() {
-    this.avgMark = this.marks.reduce((accum, number) => accum + number, 0) / this.marks.length;
-    return this.avgMark;
+    const avgMark = this.marks.reduce((accum, number) => accum + number, 0) / this.marks.length;
+    
+    return avgMark;
   }
 
   dismiss() {
-    this.dismis = true;
+    this.isDismiss = true;
   }
 
   recover() {
-    this.dismis = false;
+    this.isDismiss = false;
   }
 
   getScholarship() {
-    if (this.avgMark < 4 || this.dismis === true) { 
+    if (this.avgMark < 4 || this.isDismiss) { 
       console.log('Ви не отримуєте стипендію.')
     } else {
       console.log('Ви отримали 1400 грн. стипендії.')
@@ -47,7 +48,7 @@ console.log('student marks: ', student.marksInfo);
 student.marksInfo = 5;
 console.log('average mark: ', student.averageMark());
 student.dismiss();
-console.log('student marks(dismiss): ', student.marksInfo);
+console.log('student marks(isDismisss): ', student.marksInfo);
 student.recover();
 console.log('student marks(recover): ', student.marksInfo);
 
@@ -56,11 +57,10 @@ class BudgetStudent extends Student {
   constructor(fullName, course, university, marks) {
     super(fullName, course, university, marks);
     this.avgMark = this.avgMark;
-    
   }
 
   getScholarship() {
-    if (this.avgMark < 4 || this.dismis === true) { 
+    if (this.avgMark < 4 || this.isDismiss) { 
       console.log('Ви не отримуєте стипендію.')
     } else {
       console.log('Ви отримали 1400 грн. стипендії.')
